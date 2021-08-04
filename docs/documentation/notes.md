@@ -69,6 +69,10 @@ SET-WinSystemLocale
 - Open the Process Explorer Search via Find > Find Handle or DLL (or press Ctrl + F), enter the file name, and wait for the list of processes accessing your file.
 - Taskkill /PID XXXX /F
 - https://download.sysinternals.com/files/ProcessExplorer.zip
+
+# Missing switch user - 1 disabled, 0 on
+reg add "HKEY_USERS\S-1-5-21-xxxxxxxx\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v HideFastUserSwitching /t REG_DWORD /d 0 /f
+reg delete "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v HideFastUserSwitching /f
 ```
 
 ## Powershell:
