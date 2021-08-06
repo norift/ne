@@ -122,6 +122,25 @@ This patch is designed to remove the adobe flash player that is built in to Micr
 
 - [Windows 10 v1909 KB4577586 Download](http://download.windowsupdate.com/c/msdownload/update/software/updt/2020/10/windows10.0-kb4577586-x64_ec16e118cd8b99df185402c7a0c65a31e031a6f0.msu)
 
+## Oracle
+### Run time error '3706': Provider cannot be found
+
+This error will be due to the OraOLEDB.Oracle provider not beeing loaded on the machine. In our case unsure about root cause, but we had to add user rights to the binary folder before we were able to proceed with force loading the .dll file manually.
+
+*Oracle 12c 12.2.0.1*
+
+```
+(New-Object system.data.oledb.oledbenumerator).GetElements() | select SOURCES_NAME, SOURCES_DESCRIPTION
+# OraOLEDB.Oracle | Oracle Provider for OLE DB
+
+cd C:\app\client\Admin\product\12.2.0\client_1\bin
+C:\Windows\System32\regsvr32.exe OraOLEDB12.dll
+
+
+For x64 System32: C:\Windows\System32\regsvr32.exe
+For x86 SysWOW64: C:\Windows\SysWOW64\regsvr32.exe
+```
+
 ## Java
 ### The following resource is signed with a weak signature algorithm MD5withRSA and is treated as unsigned.
 
