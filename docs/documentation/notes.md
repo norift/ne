@@ -110,6 +110,9 @@ Get-ChildItem $path -recurse | Get-ItemProperty | Where-Object { $_ -match 'bbc'
 Get-DfsnFolderTarget -Path "\\dc.domain.com\uk\Sites\Contract"
 - Works on sub folders
 dfsutil client property state "\\dc.domain.com\uk\Sites\Contract"
+
+# RoboCopy - bad network file transfer (retries if loosing connection)
+robocopy $SourceDIR $DestDIR $File /z /w:1 /r:0 /tee /XO /v | Where-Object {$data = $_.Split([char]9); if("$($data[4])" -ne "") {$file = "$($data[4])"} ;Write-Progress "Percentage $($data[0])" -Activity "Robocopy" -CurrentOperation "$($file)" -ErrorAction SilentlyContinue;}
 ```
 
 ## Registry:
