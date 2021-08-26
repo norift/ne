@@ -39,6 +39,10 @@ Enable-Appv
 # Start disk check from remote session
 echo y | chkdsk C: /F /R
 
+# Check System Boot Time
+(gcim Win32_OperatingSystem).LastBootUpTime
+(get-date) - (gcim Win32_OperatingSystem).LastBootUpTime
+
 # ARP
 * List entries
 arp -a
