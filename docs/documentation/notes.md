@@ -77,6 +77,9 @@ SET-WinSystemLocale
 # Missing switch user windows 10 - 1 disabled, 0 on POLICY: Hide entry points for Fast User Switching - https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.WindowsLogon::HideFastUserSwitching
 reg add "HKEY_USERS\S-1-5-21-xxxxxxxx\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v HideFastUserSwitching /t REG_DWORD /d 0 /f
 reg delete "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v HideFastUserSwitching /f
+
+# Set DNS Suffix through registry
+reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\TCPIP\Parameters" /v SearchList /t REG_SZ /d "domain.com,loc-dc.domain.com,home" /f
 ```
 
 ## Powershell:
